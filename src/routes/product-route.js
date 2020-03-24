@@ -13,8 +13,4 @@ router.get('/admin/:id', controller.getById);
 router.get('/tag/:tag', controller.getByTag);
 
 
-
-
-
-
 module.exports = router;
