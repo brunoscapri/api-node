@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const config = require('./config')
 
 //declaracao dos models
 const Product = require('./models/product');
@@ -10,7 +11,7 @@ const Customer = require('./models/customer');
 const Order = require('./models/order');
 
 //conexao
-mongoose.connect("mongodb://bruno:bruno@192.168.0.104:27017", {
+mongoose.connect(config.connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
