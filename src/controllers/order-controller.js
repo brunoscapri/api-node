@@ -2,6 +2,7 @@
 
 const repository = require('../repositories/order-repository');
 const guid = require('guid');
+const auth = require('../services/auth-service');
 
 exports.get = async (req, res) => {
     try {
@@ -19,9 +20,13 @@ exports.get = async (req, res) => {
 
 
 exports.post = async (req, res) => {
+    var token = req.body.token || req.query.token || req.headers['x-access-token']
+
+    var data = auth.decodeToken(token);
+
     try {
         await repository.create({ //compondo json
-            customer: req.body.customer,
+            customer: data.id,
             number: guid.raw().substring(0, 6),
             items: req.body.items
         });
